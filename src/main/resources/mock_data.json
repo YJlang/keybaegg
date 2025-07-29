@@ -1,0 +1,57 @@
+[ {
+  "id" : 1,
+  "nickname" : "파괴왕 리턴즈",
+  "tier" : "SS",
+  "points" : 999,
+  "comment" : "카카오톡 메이저",
+  "profileImage" : "/images/profiles/73316428-917c-456c-8b78-dcd6c9ee6302.png"
+}, {
+  "id" : 3,
+  "nickname" : "신입배틀러",
+  "tier" : "B",
+  "points" : 500,
+  "comment" : "디스코드 메이저",
+  "profileImage" : "/images/profiles/6ad059c3-a0cc-4fad-8234-cf2d96f32d4c.png"
+}, {
+  "id" : 4,
+  "nickname" : "강은율",
+  "tier" : "SS",
+  "points" : 998,
+  "comment" : "좀비고 메이저",
+  "profileImage" : "/images/profiles/default.svg"
+}, {
+  "id" : 5,
+  "nickname" : "김엔류",
+  "tier" : "SS",
+  "points" : 911,
+  "comment" : "디스코드 관리자",
+  "profileImage" : "/images/profiles/default.svg"
+}, {
+  "id" : 6,
+  "nickname" : "지린다",
+  "tier" : "B",
+  "points" : 1,
+  "comment" : "11",
+  "profileImage" : "/images/profiles/e58a5574-35f0-46d3-a3fe-513a60646d7d.png"
+}, {
+  "id" : 7,
+  "nickname" : "김보철",
+  "tier" : "SS",
+  "points" : 3,
+  "comment" : "디스코드 관리자",
+  "profileImage" : "/images/profiles/10eb3ba6-fa74-4c20-9d94-80d25bc7b686.png"
+}, {
+  "id" : 8,
+  "nickname" : "나르샤",
+  "tier" : "S",
+  "points" : 21,
+  "comment" : "디스코드 메이저",
+  "profileImage" : "/images/profiles/41a06f41-c0a2-44ab-b7fd-cfbeae5c1d41.png"
+}, {
+  "id" : 9,
+  "nickname" : "세인",
+  "tier" : "SS",
+  "points" : 590,
+  "comment" : "좀비고 메이저",
+  "profileImage" : "/images/profiles/568d2870-b57e-4f0e-ac54-a6d05ba5b818.png"
+} ]
