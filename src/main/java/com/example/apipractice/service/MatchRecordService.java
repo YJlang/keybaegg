@@ -14,6 +14,7 @@ public class MatchRecordService {
 
     private final MatchRecordRepository repository;
     private final AchievementService achievementService;
+    private final KeyboardWarriorService keyboardWarriorService;
 
     public List<MatchRecord> getAllRecords() throws IOException {
         return repository.findAll();
@@ -26,6 +27,11 @@ public class MatchRecordService {
     public void addRecord(MatchRecord record) throws IOException {
         repository.save(record);
         
+        // 포인트 변화가 있으면 배틀러 포인트 업데이트
+        if (record.getPointsChange() != 0) {
+            keyboardWarriorService.updateWarriorPoints(record.getWarriorId(), record.getPointsChange());
+        }
+        
         // 업적 체크 및 해금 (비동기로 처리할 수도 있음)
         try {
             List<MatchRecord> allRecords = getRecordsByWarriorId(record.getWarriorId());
@@ -37,10 +43,30 @@ public class MatchRecordService {
     }
 
     public void updateRecord(int id, MatchRecord record) throws IOException {
+        // 기존 전적 조회하여 포인트 변화 차이 계산
+        MatchRecord oldRecord = repository.findById(id);
+        if (oldRecord != null) {
+            // 기존 포인트 변화를 되돌리고 새로운 포인트 변화 적용
+            if (oldRecord.getPointsChange() != 0) {
+                keyboardWarriorService.updateWarriorPoints(oldRecord.getWarriorId(), -oldRecord.getPointsChange());
+            }
+        }
+        
         repository.update(id, record);
+        
+        // 새로운 포인트 변화 적용
+        if (record.getPointsChange() != 0) {
+            keyboardWarriorService.updateWarriorPoints(record.getWarriorId(), record.getPointsChange());
+        }
     }
 
     public void deleteRecord(int id) throws IOException {
+        // 삭제 전에 기존 전적 조회하여 포인트 변화 되돌리기
+        MatchRecord record = repository.findById(id);
+        if (record != null && record.getPointsChange() != 0) {
+            keyboardWarriorService.updateWarriorPoints(record.getWarriorId(), -record.getPointsChange());
+        }
+        
         repository.delete(id);
     }
 

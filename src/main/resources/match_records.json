@@ -141,4 +141,15 @@
   "description" : "순위빵",
   "opponentName" : null,
   "pointsChange" : 998
+}, {
+  "id" : 14,
+  "warriorId" : 4,
+  "opponentId" : 1,
+  "result" : "WIN",
+  "score" : "3-0",
+  "matchDate" : [ 2025, 7, 30 ],
+  "gameType" : "1v1",
+  "description" : "순위빵 승리",
+  "opponentName" : null,
+  "pointsChange" : 1000
 } ]
