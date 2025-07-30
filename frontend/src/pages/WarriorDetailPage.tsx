@@ -7,15 +7,21 @@ import {
     MatchRecord, 
     MatchStats, 
     fetchMatchRecords, 
-    fetchMatchStats 
+    fetchMatchStats,
+    Achievement,
+    WarriorAchievements,
+    fetchWarriorAchievements
 } from '../api/keyboardWarriorApi';
+import { isAuthenticated } from '../auth/token';
 
 const WarriorDetailPage: React.FC = () => {
     const { id } = useParams<{ id: string }>();
     const navigate = useNavigate();
+    const authenticated = isAuthenticated();
     const [warrior, setWarrior] = useState<KeyboardWarrior | null>(null);
     const [matchRecords, setMatchRecords] = useState<MatchRecord[]>([]);
     const [matchStats, setMatchStats] = useState<MatchStats | null>(null);
+    const [achievements, setAchievements] = useState<WarriorAchievements | null>(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
 
@@ -30,14 +36,16 @@ const WarriorDetailPage: React.FC = () => {
             try {
                 setLoading(true);
                 setError(null);
-                const [warriorData, recordsData, statsData] = await Promise.all([
+                const [warriorData, recordsData, statsData, achievementsData] = await Promise.all([
                     fetchWarriorById(parseInt(id)),
                     fetchMatchRecords(parseInt(id)),
-                    fetchMatchStats(parseInt(id))
+                    fetchMatchStats(parseInt(id)),
+                    fetchWarriorAchievements(parseInt(id))
                 ]);
                 setWarrior(warriorData);
                 setMatchRecords(recordsData);
                 setMatchStats(statsData);
+                setAchievements(achievementsData);
             } catch (err: any) {
                 if (err.response?.status === 404) {
                     setError('해당 배틀러를 찾을 수 없습니다.');
@@ -62,6 +70,17 @@ const WarriorDetailPage: React.FC = () => {
             case 'B': return 'text-green-400 bg-green-900/20 border-green-500/30';
             case 'C': return 'text-gray-400 bg-gray-900/20 border-gray-500/30';
             case 'D': return 'text-red-400 bg-red-900/20 border-red-500/30';
+            default: return 'text-gray-400 bg-gray-900/20 border-gray-500/30';
+        }
+    };
+
+    // 업적 카테고리별 색상 정의
+    const getAchievementCategoryColor = (category: string) => {
+        switch (category) {
+            case 'VICTORY': return 'text-green-400 bg-green-900/20 border-green-500/30';
+            case 'RANKING': return 'text-yellow-400 bg-yellow-900/20 border-yellow-500/30';
+            case 'GAME': return 'text-blue-400 bg-blue-900/20 border-blue-500/30';
+            case 'SPECIAL': return 'text-purple-400 bg-purple-900/20 border-purple-500/30';
             default: return 'text-gray-400 bg-gray-900/20 border-gray-500/30';
         }
     };
@@ -276,6 +295,81 @@ const WarriorDetailPage: React.FC = () => {
                             </div>
                         )}
                     </div>
+
+                    {/* 업적 섹션 */}
+                    {achievements && (
+                        <div className="mb-8">
+                            <div className="flex items-center justify-between mb-4">
+                                <h2 className="text-2xl font-bold text-white flex items-center">
+                                    <svg className="w-6 h-6 mr-2 text-yellow-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" />
+                                    </svg>
+                                    업적 ({achievements.unlockedAchievements}/{achievements.totalAchievements})
+                                </h2>
+                                {authenticated && (
+                                    <button
+                                        onClick={() => navigate(`/manage/achievements/${id}`)}
+                                        className="bg-purple-600 text-white px-4 py-2 rounded-lg hover:bg-purple-700 transition-colors text-sm font-semibold"
+                                    >
+                                        🛠️ 업적 관리
+                                    </button>
+                                )}
+                            </div>
+                            
+                            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                                {achievements.achievements.map((achievement) => (
+                                    <div 
+                                        key={achievement.id} 
+                                        className={`rounded-lg p-4 border transition-all duration-300 ${
+                                            achievement.unlocked 
+                                                ? getAchievementCategoryColor(achievement.category)
+                                                : 'bg-gray-800 border-gray-600 opacity-50'
+                                        }`}
+                                    >
+                                        <div className="flex items-start space-x-3">
+                                            <div className="text-2xl">{achievement.icon}</div>
+                                            <div className="flex-1">
+                                                <h3 className={`font-semibold ${
+                                                    achievement.unlocked ? 'text-white' : 'text-gray-400'
+                                                }`}>
+                                                    {achievement.name}
+                                                </h3>
+                                                <p className={`text-sm mt-1 ${
+                                                    achievement.unlocked ? 'text-gray-300' : 'text-gray-500'
+                                                }`}>
+                                                    {achievement.description}
+                                                </p>
+                                                {achievement.unlocked && achievement.unlockedAt && (
+                                                    <p className="text-xs text-gray-400 mt-2">
+                                                        해금일: {achievement.unlockedAt}
+                                                    </p>
+                                                )}
+                                            </div>
+                                            {achievement.unlocked && (
+                                                <div className="text-green-400">
+                                                    <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                                                        <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                                                    </svg>
+                                                </div>
+                                            )}
+                                        </div>
+                                    </div>
+                                ))}
+                            </div>
+                            
+                            {achievements.unlockedAchievements === 0 && (
+                                <div className="bg-gray-700 rounded-lg p-6 border border-gray-600">
+                                    <div className="text-center text-gray-400">
+                                        <svg className="w-16 h-16 mx-auto mb-4 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" />
+                                        </svg>
+                                        <p className="text-lg">아직 해금된 업적이 없습니다.</p>
+                                        <p className="text-sm mt-2">더 많은 경기를 통해 업적을 해금해보세요!</p>
+                                    </div>
+                                </div>
+                            )}
+                        </div>
+                    )}
 
                     {/* 액션 버튼 */}
                     <div className="flex flex-col sm:flex-row justify-center space-y-3 sm:space-y-0 sm:space-x-4">

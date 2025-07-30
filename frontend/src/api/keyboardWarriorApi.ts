@@ -22,6 +22,61 @@ export const fetchRanking = async (): Promise<KeyboardWarrior[]> => {
     return res.data;
 };
 
+// 업적 관련 인터페이스
+export interface Achievement {
+    id: string;
+    name: string;
+    description: string;
+    icon: string;
+    category: string;
+    requirement: number;
+    unlockedAt: string | null;
+    unlocked: boolean;
+}
+
+export interface WarriorAchievements {
+    warriorId: number;
+    achievements: Achievement[];
+    totalAchievements: number;
+    unlockedAchievements: number;
+}
+
+// 배틀러 업적 조회
+export const fetchWarriorAchievements = async (warriorId: number): Promise<WarriorAchievements> => {
+    const res = await axios.get(`/api/achievements/warrior/${warriorId}`);
+    return res.data;
+};
+
+// 관리자: 업적 해금/해제 토글
+export const toggleAchievement = async (warriorId: number, achievementId: string): Promise<WarriorAchievements> => {
+    const res = await axios.post(`/api/achievements/warrior/${warriorId}/toggle/${achievementId}`);
+    return res.data;
+};
+
+// 관리자: 모든 업적 해금
+export const unlockAllAchievements = async (warriorId: number): Promise<WarriorAchievements> => {
+    const res = await axios.post(`/api/achievements/warrior/${warriorId}/unlock-all`);
+    return res.data;
+};
+
+// 관리자: 모든 업적 해제
+export const lockAllAchievements = async (warriorId: number): Promise<WarriorAchievements> => {
+    const res = await axios.post(`/api/achievements/warrior/${warriorId}/lock-all`);
+    return res.data;
+};
+
+// 관리자: 특정 업적 해금
+export const unlockAchievement = async (warriorId: number, achievementId: string): Promise<WarriorAchievements> => {
+    const res = await axios.post(`/api/achievements/warrior/${warriorId}/unlock/${achievementId}`);
+    return res.data;
+};
+
+// 관리자: 특정 업적 해제
+export const lockAchievement = async (warriorId: number, achievementId: string): Promise<WarriorAchievements> => {
+    const res = await axios.post(`/api/achievements/warrior/${warriorId}/lock/${achievementId}`);
+    return res.data;
+};
+
 // 개별 배틀러 상세 조회
 export const fetchWarriorById = async (id: number): Promise<KeyboardWarrior> => {
     const res = await axios.get(`/api/keyboard-warriors/${id}`);

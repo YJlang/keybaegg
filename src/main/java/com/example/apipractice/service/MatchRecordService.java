@@ -13,6 +13,7 @@ import java.util.List;
 public class MatchRecordService {
 
     private final MatchRecordRepository repository;
+    private final AchievementService achievementService;
 
     public List<MatchRecord> getAllRecords() throws IOException {
         return repository.findAll();
@@ -24,6 +25,15 @@ public class MatchRecordService {
 
     public void addRecord(MatchRecord record) throws IOException {
         repository.save(record);
+        
+        // 업적 체크 및 해금 (비동기로 처리할 수도 있음)
+        try {
+            List<MatchRecord> allRecords = getRecordsByWarriorId(record.getWarriorId());
+            achievementService.checkAndUnlockAchievements(record.getWarriorId(), record, allRecords);
+        } catch (Exception e) {
+            // 업적 체크 실패는 전적 등록에 영향을 주지 않도록 함
+            System.err.println("업적 체크 중 오류: " + e.getMessage());
+        }
     }
 
     public void updateRecord(int id, MatchRecord record) throws IOException {

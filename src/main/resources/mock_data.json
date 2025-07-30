@@ -54,4 +54,11 @@
   "points" : 590,
   "comment" : "좀비고 메이저",
   "profileImage" : "/images/profiles/568d2870-b57e-4f0e-ac54-a6d05ba5b818.png"
+}, {
+  "id" : 10,
+  "nickname" : "tester",
+  "tier" : "D",
+  "points" : 1,
+  "comment" : "dd",
+  "profileImage" : "/images/profiles/default.svg"
 } ]

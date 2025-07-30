@@ -29,8 +29,12 @@ instance.interceptors.response.use(
         if (error.response?.status === 401 || error.response?.status === 403) {
             console.log('인증 에러 발생, 토큰 제거');
             removeToken();
-            // 로그인 페이지로 리다이렉트
-            window.location.href = '/login';
+            
+            // 현재 페이지가 로그인 페이지가 아닌 경우에만 리다이렉트
+            if (window.location.pathname !== '/login') {
+                // 로그인 페이지로 리다이렉트
+                window.location.href = '/login';
+            }
         }
         return Promise.reject(error);
     }

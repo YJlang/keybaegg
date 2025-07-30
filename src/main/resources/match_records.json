@@ -119,4 +119,26 @@
   "description" : "근소",
   "opponentName" : null,
   "pointsChange" : 100
+}, {
+  "id" : 12,
+  "warriorId" : 1,
+  "opponentId" : 4,
+  "result" : "WIN",
+  "score" : "3-0",
+  "matchDate" : [ 2025, 7, 30 ],
+  "gameType" : "1v1",
+  "description" : "대장전",
+  "opponentName" : null,
+  "pointsChange" : 100
+}, {
+  "id" : 13,
+  "warriorId" : 6,
+  "opponentId" : 4,
+  "result" : "WIN",
+  "score" : "3-1",
+  "matchDate" : [ 2025, 7, 30 ],
+  "gameType" : "1v1",
+  "description" : "순위빵",
+  "opponentName" : null,
+  "pointsChange" : 998
 } ]

@@ -1,0 +1,163 @@
+[ {
+  "id" : "first_win",
+  "name" : "첫 승리",
+  "description" : "첫 번째 승리를 달성했습니다",
+  "icon" : "\uD83E\uDD47",
+  "category" : "VICTORY",
+  "requirement" : 1,
+  "unlockedAt" : [ 2025, 7, 30 ],
+  "unlocked" : true
+}, {
+  "id" : "winning_streak_3",
+  "name" : "연승 시작",
+  "description" : "3연승을 달성했습니다",
+  "icon" : "\uD83D\uDD25",
+  "category" : "VICTORY",
+  "requirement" : 3,
+  "unlockedAt" : [ 2025, 7, 30 ],
+  "unlocked" : true
+}, {
+  "id" : "winning_streak_5",
+  "name" : "연승 중급",
+  "description" : "5연승을 달성했습니다",
+  "icon" : "\uD83D\uDD25\uD83D\uDD25",
+  "category" : "VICTORY",
+  "requirement" : 5,
+  "unlockedAt" : [ 2025, 7, 30 ],
+  "unlocked" : true
+}, {
+  "id" : "winning_streak_10",
+  "name" : "연승왕",
+  "description" : "10연승을 달성했습니다",
+  "icon" : "\uD83D\uDD25\uD83D\uDD25\uD83D\uDD25",
+  "category" : "VICTORY",
+  "requirement" : 10,
+  "unlockedAt" : [ 2025, 7, 30 ],
+  "unlocked" : true
+}, {
+  "id" : "total_wins_10",
+  "name" : "승리 초보",
+  "description" : "총 10승을 달성했습니다",
+  "icon" : "\uD83C\uDFC6",
+  "category" : "VICTORY",
+  "requirement" : 10,
+  "unlockedAt" : [ 2025, 7, 30 ],
+  "unlocked" : true
+}, {
+  "id" : "total_wins_50",
+  "name" : "승리 중급",
+  "description" : "총 50승을 달성했습니다",
+  "icon" : "\uD83C\uDFC6\uD83C\uDFC6",
+  "category" : "VICTORY",
+  "requirement" : 50,
+  "unlockedAt" : [ 2025, 7, 30 ],
+  "unlocked" : true
+}, {
+  "id" : "total_wins_100",
+  "name" : "승리 마스터",
+  "description" : "총 100승을 달성했습니다",
+  "icon" : "\uD83C\uDFC6\uD83C\uDFC6\uD83C\uDFC6",
+  "category" : "VICTORY",
+  "requirement" : 100,
+  "unlockedAt" : [ 2025, 7, 30 ],
+  "unlocked" : true
+}, {
+  "id" : "reach_rank_1",
+  "name" : "최고의 자리",
+  "description" : "1위에 등극했습니다",
+  "icon" : "\uD83D\uDC51",
+  "category" : "RANKING",
+  "requirement" : 1,
+  "unlockedAt" : [ 2025, 7, 30 ],
+  "unlocked" : true
+}, {
+  "id" : "reach_rank_3",
+  "name" : "상위권",
+  "description" : "3위 안에 진입했습니다",
+  "icon" : "\uD83E\uDD49",
+  "category" : "RANKING",
+  "requirement" : 3,
+  "unlockedAt" : [ 2025, 7, 30 ],
+  "unlocked" : true
+}, {
+  "id" : "reach_rank_10",
+  "name" : "상위 10위",
+  "description" : "10위 안에 진입했습니다",
+  "icon" : "⭐",
+  "category" : "RANKING",
+  "requirement" : 10,
+  "unlockedAt" : [ 2025, 7, 30 ],
+  "unlocked" : true
+}, {
+  "id" : "tier_upgrade",
+  "name" : "티어 상승",
+  "description" : "상위 티어로 승급했습니다",
+  "icon" : "⬆️",
+  "category" : "RANKING",
+  "requirement" : 1,
+  "unlockedAt" : [ 2025, 7, 30 ],
+  "unlocked" : true
+}, {
+  "id" : "game_variety_3",
+  "name" : "다재다능",
+  "description" : "3가지 게임에서 승리했습니다",
+  "icon" : "\uD83C\uDFAE",
+  "category" : "GAME",
+  "requirement" : 3,
+  "unlockedAt" : [ 2025, 7, 30 ],
+  "unlocked" : true
+}, {
+  "id" : "game_variety_5",
+  "name" : "게임 마스터",
+  "description" : "5가지 게임에서 승리했습니다",
+  "icon" : "\uD83C\uDFAE\uD83C\uDFAE",
+  "category" : "GAME",
+  "requirement" : 5,
+  "unlockedAt" : [ 2025, 7, 30 ],
+  "unlocked" : true
+}, {
+  "id" : "kakao_master",
+  "name" : "카카오톡 마스터",
+  "description" : "카카오톡에서 10승을 달성했습니다",
+  "icon" : "\uD83D\uDCAC",
+  "category" : "GAME",
+  "requirement" : 10,
+  "unlockedAt" : [ 2025, 7, 30 ],
+  "unlocked" : true
+}, {
+  "id" : "discord_master",
+  "name" : "디스코드 마스터",
+  "description" : "디스코드에서 10승을 달성했습니다",
+  "icon" : "\uD83C\uDFA7",
+  "category" : "GAME",
+  "requirement" : 10,
+  "unlockedAt" : [ 2025, 7, 30 ],
+  "unlocked" : true
+}, {
+  "id" : "comeback_king",
+  "name" : "역전왕",
+  "description" : "연속 3경기에서 역전승을 달성했습니다",
+  "icon" : "\uD83D\uDCAA",
+  "category" : "SPECIAL",
+  "requirement" : 3,
+  "unlockedAt" : [ 2025, 7, 30 ],
+  "unlocked" : true
+}, {
+  "id" : "perfect_win",
+  "name" : "완벽한 승리",
+  "description" : "10-0 스코어로 승리했습니다",
+  "icon" : "\uD83D\uDC8E",
+  "category" : "SPECIAL",
+  "requirement" : 1,
+  "unlockedAt" : [ 2025, 7, 30 ],
+  "unlocked" : true
+}, {
+  "id" : "long_match",
+  "name" : "장기전",
+  "description" : "30분 이상 경기를 진행했습니다",
+  "icon" : "⏰",
+  "category" : "SPECIAL",
+  "requirement" : 30,
+  "unlockedAt" : [ 2025, 7, 30 ],
+  "unlocked" : true
+} ]

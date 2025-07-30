@@ -7,6 +7,7 @@ import SearchPage from './pages/SearchPage';
 import ManagePage from './pages/ManagePage';
 import WarriorDetailPage from './pages/WarriorDetailPage';
 import MatchRecordManagePage from './pages/MatchRecordManagePage';
+import AchievementManagePage from './pages/AchievementManagePage';
 import PrivateRoute from './components/PrivateRoute';
 import Header from './components/Header';
 
@@ -32,6 +33,14 @@ function App() {
                 element={
                     <PrivateRoute>
                         <MatchRecordManagePage />
+                    </PrivateRoute>
+                }
+            />
+            <Route
+                path="/manage/achievements/:id"
+                element={
+                    <PrivateRoute>
+                        <AchievementManagePage />
                     </PrivateRoute>
                 }
             />

@@ -4,8 +4,8 @@ const TOKEN_EXPIRY_KEY = 'jwt_token_expiry';
 
 export const saveToken = (token: string) => {
     localStorage.setItem(TOKEN_KEY, token);
-    // 토큰 만료 시간 설정 (1시간)
-    const expiryTime = new Date().getTime() + (60 * 60 * 1000);
+    // 토큰 만료 시간 설정 (24시간)
+    const expiryTime = new Date().getTime() + (24 * 60 * 60 * 1000);
     localStorage.setItem(TOKEN_EXPIRY_KEY, expiryTime.toString());
 };
 

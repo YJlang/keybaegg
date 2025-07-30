@@ -53,11 +53,16 @@ public class SecurityConfig {
                         .requestMatchers("/api/users/register", "/api/users/login",
                                 "/api/keyboard-warriors/allow", "/api/keyboard-warriors/{id}", 
                                 "/api/keyboard-warriors/ranking", "/api/match-records/warrior/**", 
-                                "/api/upload/**", "/api/test/**").permitAll()
+                                "/api/achievements/warrior/{id}", "/api/upload/**", "/api/test/**").permitAll()
                         .requestMatchers("/images/**", "/static/**", "/css/**", "/js/**", "/favicon.ico").permitAll() // 정적 리소스 허용
-                        .requestMatchers("/api/match-records").authenticated() // 전적 관리 API (CRUD)
-                        .requestMatchers("/api/match-records/{id}").authenticated() // 전적 관리 API (개별 CRUD)
-                        .anyRequest().authenticated()
+                                                  .requestMatchers("/api/match-records").authenticated() // 전적 관리 API (CRUD)
+                          .requestMatchers("/api/match-records/{id}").authenticated() // 전적 관리 API (개별 CRUD)
+                          .requestMatchers("/api/achievements/warrior/*/toggle/*").authenticated() // 업적 관리 API
+                          .requestMatchers("/api/achievements/warrior/*/unlock-all").authenticated() // 업적 관리 API
+                          .requestMatchers("/api/achievements/warrior/*/lock-all").authenticated() // 업적 관리 API
+                          .requestMatchers("/api/achievements/warrior/*/unlock/*").authenticated() // 업적 관리 API
+                          .requestMatchers("/api/achievements/warrior/*/lock/*").authenticated() // 업적 관리 API
+                          .anyRequest().authenticated()
                 )
                 .addFilterBefore(new JwtAuthenticationFilter(jwtTokenProvider), UsernamePasswordAuthenticationFilter.class)
                 .build();

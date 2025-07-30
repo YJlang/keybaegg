@@ -1,0 +1,226 @@
+[ {
+  "id" : "first_win",
+  "name" : "첫 논쟁 승리",
+  "description" : "첫 번째 말싸움에서 승리했습니다",
+  "icon" : "\uD83E\uDD47",
+  "category" : "VICTORY",
+  "requirement" : 1,
+  "unlockedAt" : null,
+  "unlocked" : false
+}, {
+  "id" : "winning_streak_3",
+  "name" : "논쟁 연승",
+  "description" : "3연속 말싸움에서 승리했습니다",
+  "icon" : "\uD83D\uDD25",
+  "category" : "VICTORY",
+  "requirement" : 3,
+  "unlockedAt" : null,
+  "unlocked" : false
+}, {
+  "id" : "winning_streak_5",
+  "name" : "논쟁 중급자",
+  "description" : "5연속 말싸움에서 승리했습니다",
+  "icon" : "\uD83D\uDD25\uD83D\uDD25",
+  "category" : "VICTORY",
+  "requirement" : 5,
+  "unlockedAt" : null,
+  "unlocked" : false
+}, {
+  "id" : "winning_streak_10",
+  "name" : "논쟁왕",
+  "description" : "10연속 말싸움에서 승리했습니다",
+  "icon" : "\uD83D\uDD25\uD83D\uDD25\uD83D\uDD25",
+  "category" : "VICTORY",
+  "requirement" : 10,
+  "unlockedAt" : null,
+  "unlocked" : false
+}, {
+  "id" : "total_wins_10",
+  "name" : "논쟁 초보",
+  "description" : "총 10번의 말싸움에서 승리했습니다",
+  "icon" : "\uD83C\uDFC6",
+  "category" : "VICTORY",
+  "requirement" : 10,
+  "unlockedAt" : null,
+  "unlocked" : false
+}, {
+  "id" : "total_wins_50",
+  "name" : "논쟁 중급",
+  "description" : "총 50번의 말싸움에서 승리했습니다",
+  "icon" : "\uD83C\uDFC6\uD83C\uDFC6",
+  "category" : "VICTORY",
+  "requirement" : 50,
+  "unlockedAt" : null,
+  "unlocked" : false
+}, {
+  "id" : "total_wins_100",
+  "name" : "논쟁 마스터",
+  "description" : "총 100번의 말싸움에서 승리했습니다",
+  "icon" : "\uD83C\uDFC6\uD83C\uDFC6\uD83C\uDFC6",
+  "category" : "VICTORY",
+  "requirement" : 100,
+  "unlockedAt" : null,
+  "unlocked" : false
+}, {
+  "id" : "reach_rank_1",
+  "name" : "최고의 논쟁가",
+  "description" : "말싸움 랭킹 1위에 등극했습니다",
+  "icon" : "\uD83D\uDC51",
+  "category" : "RANKING",
+  "requirement" : 1,
+  "unlockedAt" : null,
+  "unlocked" : false
+}, {
+  "id" : "reach_rank_3",
+  "name" : "상위 논쟁가",
+  "description" : "말싸움 랭킹 3위 안에 진입했습니다",
+  "icon" : "\uD83E\uDD49",
+  "category" : "RANKING",
+  "requirement" : 3,
+  "unlockedAt" : null,
+  "unlocked" : false
+}, {
+  "id" : "reach_rank_10",
+  "name" : "상위 10위",
+  "description" : "말싸움 랭킹 10위 안에 진입했습니다",
+  "icon" : "⭐",
+  "category" : "RANKING",
+  "requirement" : 10,
+  "unlockedAt" : null,
+  "unlocked" : false
+}, {
+  "id" : "tier_upgrade",
+  "name" : "티어 상승",
+  "description" : "상위 티어로 승급했습니다",
+  "icon" : "⬆️",
+  "category" : "RANKING",
+  "requirement" : 1,
+  "unlockedAt" : null,
+  "unlocked" : false
+}, {
+  "id" : "platform_variety_3",
+  "name" : "다재다능",
+  "description" : "3가지 플랫폼에서 말싸움 승리를 달성했습니다",
+  "icon" : "\uD83D\uDCAC",
+  "category" : "PLATFORM",
+  "requirement" : 3,
+  "unlockedAt" : null,
+  "unlocked" : false
+}, {
+  "id" : "platform_variety_5",
+  "name" : "플랫폼 마스터",
+  "description" : "5가지 플랫폼에서 말싸움 승리를 달성했습니다",
+  "icon" : "\uD83D\uDCAC\uD83D\uDCAC",
+  "category" : "PLATFORM",
+  "requirement" : 5,
+  "unlockedAt" : null,
+  "unlocked" : false
+}, {
+  "id" : "kakao_master",
+  "name" : "카카오톡 논쟁왕",
+  "description" : "카카오톡에서 10번의 말싸움에서 승리했습니다",
+  "icon" : "\uD83D\uDCAC",
+  "category" : "PLATFORM",
+  "requirement" : 10,
+  "unlockedAt" : null,
+  "unlocked" : false
+}, {
+  "id" : "discord_master",
+  "name" : "디스코드 논쟁왕",
+  "description" : "디스코드에서 10번의 말싸움에서 승리했습니다",
+  "icon" : "\uD83C\uDFA7",
+  "category" : "PLATFORM",
+  "requirement" : 10,
+  "unlockedAt" : null,
+  "unlocked" : false
+}, {
+  "id" : "youtube_master",
+  "name" : "유튜브 논쟁왕",
+  "description" : "유튜브 댓글에서 10번의 말싸움에서 승리했습니다",
+  "icon" : "\uD83D\uDCFA",
+  "category" : "PLATFORM",
+  "requirement" : 10,
+  "unlockedAt" : null,
+  "unlocked" : false
+}, {
+  "id" : "twitter_master",
+  "name" : "트위터 논쟁왕",
+  "description" : "트위터에서 10번의 말싸움에서 승리했습니다",
+  "icon" : "\uD83D\uDC26",
+  "category" : "PLATFORM",
+  "requirement" : 10,
+  "unlockedAt" : null,
+  "unlocked" : false
+}, {
+  "id" : "comeback_king",
+  "name" : "역전 논쟁왕",
+  "description" : "연속 3번의 말싸움에서 역전승을 달성했습니다",
+  "icon" : "\uD83D\uDCAA",
+  "category" : "SPECIAL",
+  "requirement" : 3,
+  "unlockedAt" : null,
+  "unlocked" : false
+}, {
+  "id" : "perfect_win",
+  "name" : "완벽한 논쟁",
+  "description" : "상대방을 완전히 설득시켜 승리했습니다",
+  "icon" : "\uD83D\uDC8E",
+  "category" : "SPECIAL",
+  "requirement" : 1,
+  "unlockedAt" : null,
+  "unlocked" : false
+}, {
+  "id" : "long_debate",
+  "name" : "장기 논쟁",
+  "description" : "2시간 이상의 말싸움을 진행했습니다",
+  "icon" : "⏰",
+  "category" : "SPECIAL",
+  "requirement" : 120,
+  "unlockedAt" : null,
+  "unlocked" : false
+}, {
+  "id" : "fact_checker",
+  "name" : "팩트체커",
+  "description" : "10번의 말싸움에서 사실 확인으로 승리했습니다",
+  "icon" : "\uD83D\uDD0D",
+  "category" : "SPECIAL",
+  "requirement" : 10,
+  "unlockedAt" : null,
+  "unlocked" : false
+}, {
+  "id" : "logic_master",
+  "name" : "논리의 달인",
+  "description" : "논리적 오류를 지적하여 20번 승리했습니다",
+  "icon" : "\uD83E\uDDA0",
+  "category" : "SPECIAL",
+  "requirement" : 20,
+  "unlockedAt" : null,
+  "unlocked" : false
+}, {
+  "id" : "calm_debater",
+  "name" : "냉정한 논쟁가",
+  "description" : "감정적 대응 없이 30번의 말싸움에서 승리했습니다",
+  "icon" : "\uD83D\uDE0C",
+  "category" : "SPECIAL",
+  "requirement" : 30,
+  "unlockedAt" : null,
+  "unlocked" : false
+}, {
+  "id" : "topic_master",
+  "name" : "주제 마스터",
+  "description" : "정치, 경제, 사회 등 다양한 주제에서 승리했습니다",
+  "icon" : "\uD83D\uDCDA",
+  "category" : "SPECIAL",
+  "requirement" : 5,
+  "unlockedAt" : null,
+  "unlocked" : false
+}, {
+  "id" : "respect_earner",
+  "name" : "존중받는 논쟁가",
+  "description" : "상대방으로부터 존중받으며 승리했습니다",
+  "icon" : "\uD83E\uDD1D",
+  "category" : "SPECIAL",
+  "requirement" : 10,
+  "unlockedAt" : null,
+  "unlocked" : false
+} ]
