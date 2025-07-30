@@ -25,12 +25,12 @@ WORKDIR /app
 # 6. JAR 파일 복사
 COPY --from=build /app/build/libs/*.jar app.jar
 
-# 7. 포트 노출
-EXPOSE 8080
+# 7. 포트 노출 (Render에서 동적 할당)
+EXPOSE ${PORT:-8080}
 
-# 8. 헬스체크
+# 8. 헬스체크 (동적 포트 사용)
 HEALTHCHECK --interval=30s --timeout=10s --start-period=60s --retries=3 \
-    CMD curl -f http://localhost:8080/api/test/health || exit 1
+    CMD curl -f http://localhost:${PORT:-8080}/api/test/health || exit 1
 
 # 9. 애플리케이션 실행
 CMD ["java", "-jar", "app.jar"] 
