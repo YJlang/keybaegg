@@ -1,0 +1,65 @@
+# ===========================================
+# Docker 빌드 최적화를 위한 .dockerignore
+# ===========================================
+
+# Git 관련
+.git
+.gitignore
+.gitattributes
+
+# IDE 관련
+.idea
+.vscode
+*.iml
+*.ipr
+*.iws
+
+# OS 관련
+.DS_Store
+Thumbs.db
+
+# 빌드 결과물
+build/
+.gradle/
+!gradle/wrapper/gradle-wrapper.jar
+!gradle/wrapper/gradle-wrapper.properties
+
+# 로그 파일
+*.log
+logs/
+
+# 임시 파일
+*.tmp
+*.temp
+*.swp
+*.swo
+
+# Node.js (프론트엔드)
+frontend/node_modules/
+frontend/.next/
+frontend/out/
+frontend/dist/
+frontend/.nuxt/
+frontend/.cache/
+
+# 환경 변수 파일
+.env
+.env.local
+.env.development
+.env.test
+.env.production
+
+# 문서
+README.md
+*.md
+docs/
+
+# 테스트 관련
+src/test/
+test/
+tests/
+
+# 기타
+*.bak
+*.backup
+*.orig 
