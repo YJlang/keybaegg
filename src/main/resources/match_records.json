@@ -1,0 +1,122 @@
+[ {
+  "id" : 1,
+  "warriorId" : 1,
+  "opponentId" : 3,
+  "result" : "WIN",
+  "score" : "3-1",
+  "matchDate" : [ 2024, 1, 15 ],
+  "gameType" : "1v1",
+  "description" : "카카오톡 대전 - 파괴왕 리턴즈의 압도적 승리",
+  "opponentName" : "신입배틀러",
+  "pointsChange" : 15
+}, {
+  "id" : 2,
+  "warriorId" : 1,
+  "opponentId" : 4,
+  "result" : "LOSE",
+  "score" : "1-3",
+  "matchDate" : [ 2024, 1, 14 ],
+  "gameType" : "1v1",
+  "description" : "강은율과의 치열한 대결, 아쉽게 패배",
+  "opponentName" : "강은율",
+  "pointsChange" : -10
+}, {
+  "id" : 3,
+  "warriorId" : 1,
+  "opponentId" : 5,
+  "result" : "WIN",
+  "score" : "3-0",
+  "matchDate" : [ 2024, 1, 13 ],
+  "gameType" : "1v1",
+  "description" : "김엔류를 상대로 완벽한 승리",
+  "opponentName" : "김엔류",
+  "pointsChange" : 20
+}, {
+  "id" : 4,
+  "warriorId" : 4,
+  "opponentId" : 1,
+  "result" : "WIN",
+  "score" : "3-1",
+  "matchDate" : [ 2024, 1, 14 ],
+  "gameType" : "1v1",
+  "description" : "파괴왕 리턴즈를 상대로 승리",
+  "opponentName" : "파괴왕 리턴즈",
+  "pointsChange" : 12
+}, {
+  "id" : 5,
+  "warriorId" : 4,
+  "opponentId" : 8,
+  "result" : "WIN",
+  "score" : "2-1",
+  "matchDate" : [ 2024, 1, 12 ],
+  "gameType" : "1v1",
+  "description" : "나르샤와의 접전 끝에 승리",
+  "opponentName" : "나르샤",
+  "pointsChange" : 8
+}, {
+  "id" : 6,
+  "warriorId" : 8,
+  "opponentId" : 4,
+  "result" : "LOSE",
+  "score" : "1-2",
+  "matchDate" : [ 2024, 1, 12 ],
+  "gameType" : "1v1",
+  "description" : "강은율과의 대결에서 아쉽게 패배",
+  "opponentName" : "강은율",
+  "pointsChange" : -5
+}, {
+  "id" : 7,
+  "warriorId" : 8,
+  "opponentId" : 6,
+  "result" : "WIN",
+  "score" : "3-0",
+  "matchDate" : [ 2024, 1, 11 ],
+  "gameType" : "1v1",
+  "description" : "지린다를 상대로 완승",
+  "opponentName" : "지린다",
+  "pointsChange" : 10
+}, {
+  "id" : 8,
+  "warriorId" : 3,
+  "opponentId" : 1,
+  "result" : "LOSE",
+  "score" : "1-3",
+  "matchDate" : [ 2024, 1, 15 ],
+  "gameType" : "1v1",
+  "description" : "파괴왕 리턴즈에게 패배",
+  "opponentName" : "파괴왕 리턴즈",
+  "pointsChange" : -8
+}, {
+  "id" : 9,
+  "warriorId" : 3,
+  "opponentId" : 7,
+  "result" : "DRAW",
+  "score" : "2-2",
+  "matchDate" : [ 2024, 1, 10 ],
+  "gameType" : "1v1",
+  "description" : "김보철과의 대결에서 무승부",
+  "opponentName" : "김보철",
+  "pointsChange" : 0
+}, {
+  "id" : 10,
+  "warriorId" : 9,
+  "opponentId" : 1,
+  "result" : "WIN",
+  "score" : "3-2",
+  "matchDate" : [ 2024, 1, 9 ],
+  "gameType" : "Tournament",
+  "description" : "토너먼트 결승에서 파괴왕 리턴즈를 꺾고 우승",
+  "opponentName" : "파괴왕 리턴즈",
+  "pointsChange" : 25
+}, {
+  "id" : 11,
+  "warriorId" : 4,
+  "opponentId" : 3,
+  "result" : "WIN",
+  "score" : "3-0",
+  "matchDate" : [ 2025, 7, 30 ],
+  "gameType" : "1v1",
+  "description" : "근소",
+  "opponentName" : null,
+  "pointsChange" : 100
+} ]

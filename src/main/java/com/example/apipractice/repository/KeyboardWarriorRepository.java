@@ -10,4 +10,5 @@ public interface KeyboardWarriorRepository {
     void save(KeyboardWarrior warrior) throws IOException;
     void update(int id, KeyboardWarrior warrior) throws IOException;
     void delete(int id) throws IOException;
+    KeyboardWarrior findById(int id) throws IOException;
 }

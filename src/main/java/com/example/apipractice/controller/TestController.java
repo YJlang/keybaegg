@@ -1,6 +1,8 @@
 package com.example.apipractice.controller;
 
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.File;
@@ -38,6 +40,17 @@ public class TestController {
             return ResponseEntity.ok(result.toString());
         } catch (Exception e) {
             return ResponseEntity.ok("에러 발생: " + e.getMessage());
+        }
+    }
+
+    @GetMapping("/auth-status")
+    public ResponseEntity<String> checkAuthStatus() {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        
+        if (auth != null && auth.isAuthenticated() && !"anonymousUser".equals(auth.getName())) {
+            return ResponseEntity.ok("인증됨 - 사용자: " + auth.getName() + ", 권한: " + auth.getAuthorities());
+        } else {
+            return ResponseEntity.ok("인증되지 않음 - 사용자: " + (auth != null ? auth.getName() : "null"));
         }
     }
 } 

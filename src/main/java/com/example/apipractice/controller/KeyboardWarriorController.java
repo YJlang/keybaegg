@@ -38,4 +38,20 @@ public class KeyboardWarriorController {
         service.delete(id);
         return ResponseEntity.ok().build();
     }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<KeyboardWarrior> getById(@PathVariable int id) throws IOException {
+        KeyboardWarrior warrior = service.getById(id);
+        if (warrior == null) {
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok(warrior);
+    }
+
+    // 실시간 랭킹 API (포인트 순 정렬)
+    @GetMapping("/ranking")
+    public ResponseEntity<List<KeyboardWarrior>> getRanking() throws IOException {
+        List<KeyboardWarrior> rankedWarriors = service.getRankedWarriors();
+        return ResponseEntity.ok(rankedWarriors);
+    }
 }

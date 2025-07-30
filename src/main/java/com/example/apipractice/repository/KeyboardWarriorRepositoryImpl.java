@@ -45,4 +45,13 @@ public class KeyboardWarriorRepositoryImpl implements KeyboardWarriorRepository 
         list.removeIf(w -> w.getId() == id);
         JsonFileHandler.writeWarriors(list);
     }
+
+    @Override
+    public KeyboardWarrior findById(int id) throws IOException {
+        List<KeyboardWarrior> list = JsonFileHandler.readWarriors();
+        return list.stream()
+                .filter(w -> w.getId() == id)
+                .findFirst()
+                .orElse(null);
+    }
 }

@@ -51,8 +51,12 @@ public class SecurityConfig {
                 .csrf(csrf -> csrf.disable()) // CSRF 비활성화
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/api/users/register", "/api/users/login",
-                                "/api/keyboard-warriors/allow", "/api/upload/**", "/api/test/**").permitAll()
+                                "/api/keyboard-warriors/allow", "/api/keyboard-warriors/{id}", 
+                                "/api/keyboard-warriors/ranking", "/api/match-records/warrior/**", 
+                                "/api/upload/**", "/api/test/**").permitAll()
                         .requestMatchers("/images/**", "/static/**", "/css/**", "/js/**", "/favicon.ico").permitAll() // 정적 리소스 허용
+                        .requestMatchers("/api/match-records").authenticated() // 전적 관리 API (CRUD)
+                        .requestMatchers("/api/match-records/{id}").authenticated() // 전적 관리 API (개별 CRUD)
                         .anyRequest().authenticated()
                 )
                 .addFilterBefore(new JwtAuthenticationFilter(jwtTokenProvider), UsernamePasswordAuthenticationFilter.class)

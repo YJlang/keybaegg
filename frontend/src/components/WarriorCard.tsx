@@ -1,5 +1,6 @@
 // src/components/WarriorCard.tsx
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import { KeyboardWarrior } from '../api/keyboardWarriorApi';
 
 interface WarriorCardProps {
@@ -19,6 +20,7 @@ const getTierColor = (tier: string) => {
 };
 
 const WarriorCard: React.FC<WarriorCardProps> = ({ warrior }) => {
+    const navigate = useNavigate();
     const tierColor = getTierColor(warrior.tier);
     
     // 프로필 이미지 URL 생성 (백엔드 URL과 결합)
@@ -27,7 +29,10 @@ const WarriorCard: React.FC<WarriorCardProps> = ({ warrior }) => {
         : `http://localhost:8080${warrior.profileImage}`;
     
     return (
-        <div className={`bg-gray-800 p-6 rounded-lg shadow-lg border-l-4 ${tierColor.split(' ')[0]} hover:shadow-xl transition-shadow duration-200`}>
+        <div 
+            className={`bg-gray-800 p-6 rounded-lg shadow-lg border-l-4 ${tierColor.split(' ')[0]} hover:shadow-xl transition-shadow duration-200 cursor-pointer hover:bg-gray-750`}
+            onClick={() => navigate(`/warrior/${warrior.id}`)}
+        >
             <div className="flex items-start space-x-4">
                 {/* 프로필 이미지 */}
                 <div className="flex-shrink-0">
