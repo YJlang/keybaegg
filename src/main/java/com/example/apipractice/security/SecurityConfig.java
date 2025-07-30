@@ -34,10 +34,19 @@ public class SecurityConfig {
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration config = new CorsConfiguration();
-        config.setAllowedOrigins(Arrays.asList("http://localhost:3000")); // 프론트엔드 주소 또는 * 로 모두 허용 가능
+        config.setAllowedOrigins(Arrays.asList(
+            "http://localhost:3000", 
+            "https://localhost:3000",
+            "http://localhost:5173",
+            "https://localhost:5173",
+            "https://*.vercel.app",
+            "https://*.netlify.app",
+            "https://*.github.io"
+        )); // 로컬 개발 + 배포 환경 허용
         config.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "OPTIONS"));
-        config.setAllowedHeaders(Arrays.asList("Authorization", "Content-Type"));
+        config.setAllowedHeaders(Arrays.asList("Authorization", "Content-Type", "X-Requested-With"));
         config.setAllowCredentials(true); // 자격 증명 허용 (쿠키 등)
+        config.setMaxAge(3600L); // CORS preflight 캐시 1시간
 
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         source.registerCorsConfiguration("/**", config); // 모든 경로에 대해 적용

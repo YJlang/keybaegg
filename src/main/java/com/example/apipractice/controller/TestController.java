@@ -14,6 +14,11 @@ import java.nio.file.Paths;
 @RequestMapping("/api/test")
 public class TestController {
 
+    @GetMapping("/health")
+    public ResponseEntity<String> healthCheck() {
+        return ResponseEntity.ok("OK");
+    }
+
     @GetMapping("/check-images")
     public ResponseEntity<String> checkImages() {
         try {

@@ -30,6 +30,10 @@ COPY --from=build /app/build/libs/*.jar app.jar
 # 5. 포트 노출 (Render에서 필요)
 EXPOSE 8080
 
-# 6. 컨테이너 시작 시 실행할 명령어
+# 6. 헬스체크 추가 (Render에서 필요)
+HEALTHCHECK --interval=30s --timeout=3s --start-period=60s --retries=3 \
+  CMD curl -f http://localhost:8080/api/test/health || exit 1
+
+# 7. 컨테이너 시작 시 실행할 명령어
 # 컨테이너가 시작되면 "java -jar app.jar" 명령어로 애플리케이션을 실행합니다.
 CMD ["java", "-jar", "app.jar"] 
