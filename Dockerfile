@@ -27,6 +27,9 @@ WORKDIR /app
 # 빌드 단계(build)에서 생성된 JAR 파일을 현재 단계의 /app 디렉터리에 app.jar로 복사합니다.
 COPY --from=build /app/build/libs/*.jar app.jar
 
-# 5. 컨테이너 시작 시 실행할 명령어
+# 5. 포트 노출 (Render에서 필요)
+EXPOSE 8080
+
+# 6. 컨테이너 시작 시 실행할 명령어
 # 컨테이너가 시작되면 "java -jar app.jar" 명령어로 애플리케이션을 실행합니다.
 CMD ["java", "-jar", "app.jar"] 
