@@ -2,7 +2,7 @@
 FROM eclipse-temurin:21-jdk AS build
 WORKDIR /app
 
-# Gradle Wrapper 복사 및 권한 설정
+# Gradle Wrapper 파일들 복사
 COPY gradlew ./
 COPY gradle gradle
 COPY build.gradle settings.gradle ./
@@ -15,8 +15,7 @@ RUN ./gradlew dependencies --no-daemon --parallel
 COPY src src
 
 # 애플리케이션 빌드 (테스트 제외, 최적화)
-RUN ./gradlew clean build -x test --no-daemon --parallel \
-    && find . -name "*.jar" -exec cp {} app.jar \;
+RUN ./gradlew clean build -x test --no-daemon --parallel
 
 # 프로덕션 런타임 스테이지
 FROM eclipse-temurin:21-jre-alpine
@@ -26,7 +25,7 @@ WORKDIR /app
 RUN apk update && apk add --no-cache curl
 
 # JAR 파일 복사
-COPY --from=build /app/app.jar app.jar
+COPY --from=build /app/build/libs/*.jar app.jar
 
 # 정적 파일 디렉토리 생성
 RUN mkdir -p /app/static
