@@ -3,11 +3,13 @@ package com.example.apipractice.domain;
 
 import jakarta.persistence.*;
 import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 @Entity
+@Table(name = "users")
 @Getter
 @NoArgsConstructor
 @ToString
