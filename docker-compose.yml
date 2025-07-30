@@ -1,0 +1,68 @@
+version: "3.8"
+
+services:
+  # MySQL 데이터베이스
+  mysql:
+    image: mysql:8.0
+    container_name: keybaegg-mysql
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: wnsgk677400
+      MYSQL_DATABASE: demo_db
+      MYSQL_USER: keybaegg
+      MYSQL_PASSWORD: keybaeggpw
+      TZ: Asia/Seoul
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+    command: --default-authentication-plugin=mysql_native_password
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      timeout: 20s
+      retries: 10
+
+  # Spring Boot 백엔드
+  backend:
+    build:
+      context: .
+      dockerfile: Dockerfile.backend
+    container_name: keybaegg-backend
+    restart: always
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/demo_db?serverTimezone=Asia/Seoul&characterEncoding=UTF-8&allowPublicKeyRetrieval=true&useSSL=false
+      SPRING_DATASOURCE_USERNAME: keybaegg
+      SPRING_DATASOURCE_PASSWORD: keybaeggpw
+      SPRING_PROFILES_ACTIVE: docker
+      TZ: Asia/Seoul
+    ports:
+      - "8080:8080"
+    depends_on:
+      mysql:
+        condition: service_healthy
+    volumes:
+      - ./src/main/resources/static:/app/static
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8080/api/keyboard-warriors/allow"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  # React 프론트엔드
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile.frontend
+    container_name: keybaegg-frontend
+    restart: always
+    environment:
+      - REACT_APP_API_URL=http://localhost:8080
+    ports:
+      - "3000:80"
+    depends_on:
+      backend:
+        condition: service_healthy
+
+volumes:
+  mysql_data: 
