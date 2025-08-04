@@ -16,6 +16,7 @@ public class AchievementRepositoryImpl implements AchievementRepository {
 
     private final ObjectMapper objectMapper;
     private static final String ACHIEVEMENTS_DIR = "achievements";
+    private static final String EXTERNAL_ACHIEVEMENTS_DIR = "./data/achievements";
 
     @Autowired
     public AchievementRepositoryImpl(ObjectMapper objectMapper) {
@@ -25,13 +26,21 @@ public class AchievementRepositoryImpl implements AchievementRepository {
     @Override
     public List<Achievement> findByWarriorId(int warriorId) throws IOException {
         try {
-            File file = getAchievementFile(warriorId);
-            if (!file.exists()) {
+            // 먼저 외부 파일에서 읽기 시도
+            File externalFile = getExternalAchievementFile(warriorId);
+            if (externalFile.exists()) {
+                return objectMapper.readValue(externalFile, new TypeReference<List<Achievement>>() {});
+            }
+            
+            // 외부 파일이 없으면 클래스패스에서 읽기
+            var inputStream = getClass().getClassLoader().getResourceAsStream(
+                ACHIEVEMENTS_DIR + "/warrior_" + warriorId + "_achievements.json"
+            );
+            if (inputStream == null) {
                 return new ArrayList<>();
             }
             
-            List<Achievement> achievements = objectMapper.readValue(file, new TypeReference<List<Achievement>>() {});
-            return achievements;
+            return objectMapper.readValue(inputStream, new TypeReference<List<Achievement>>() {});
         } catch (Exception e) {
             // 파일이 없거나 읽기 실패 시 빈 리스트 반환
             return new ArrayList<>();
@@ -41,7 +50,7 @@ public class AchievementRepositoryImpl implements AchievementRepository {
     @Override
     public void save(int warriorId, List<Achievement> achievements) throws IOException {
         try {
-            File file = getAchievementFile(warriorId);
+            File file = getExternalAchievementFile(warriorId);
             // 디렉토리가 없으면 생성
             file.getParentFile().mkdirs();
             objectMapper.writerWithDefaultPrettyPrinter().writeValue(file, achievements);
@@ -52,5 +61,9 @@ public class AchievementRepositoryImpl implements AchievementRepository {
 
     private File getAchievementFile(int warriorId) {
         return new File("./src/main/resources/" + ACHIEVEMENTS_DIR + "/warrior_" + warriorId + "_achievements.json");
+    }
+
+    private File getExternalAchievementFile(int warriorId) {
+        return new File(EXTERNAL_ACHIEVEMENTS_DIR + "/warrior_" + warriorId + "_achievements.json");
     }
 } 

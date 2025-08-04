@@ -16,7 +16,8 @@ import java.util.NoSuchElementException;
 @Repository
 public class MatchRecordRepositoryImpl implements MatchRecordRepository {
 
-    private static final String DATA_FILE = "src/main/resources/match_records.json";
+    private static final String RESOURCE_FILE = "match_records.json";
+    private static final String EXTERNAL_FILE = "./data/match_records.json";
     private final ObjectMapper objectMapper;
 
     @Autowired
@@ -26,11 +27,22 @@ public class MatchRecordRepositoryImpl implements MatchRecordRepository {
 
     @Override
     public List<MatchRecord> findAll() throws IOException {
-        File file = new File(DATA_FILE);
-        if (!file.exists()) {
+        // 먼저 외부 파일에서 읽기 시도
+        File externalFile = new File(EXTERNAL_FILE);
+        if (externalFile.exists()) {
+            return objectMapper.readValue(externalFile, new TypeReference<List<MatchRecord>>() {});
+        }
+        
+        // 외부 파일이 없으면 클래스패스에서 읽기
+        try {
+            var inputStream = getClass().getClassLoader().getResourceAsStream(RESOURCE_FILE);
+            if (inputStream == null) {
+                return List.of();
+            }
+            return objectMapper.readValue(inputStream, new TypeReference<List<MatchRecord>>() {});
+        } catch (Exception e) {
             return List.of();
         }
-        return objectMapper.readValue(file, new TypeReference<List<MatchRecord>>() {});
     }
 
     @Override
@@ -82,10 +94,11 @@ public class MatchRecordRepositoryImpl implements MatchRecordRepository {
     }
 
     private void writeToFile(List<MatchRecord> records) throws IOException {
-        // 디렉토리가 없으면 생성
-        File file = new File(DATA_FILE);
-        file.getParentFile().mkdirs();
+        // 외부 디렉토리 생성
+        File externalFile = new File(EXTERNAL_FILE);
+        externalFile.getParentFile().mkdirs();
         
-        objectMapper.writerWithDefaultPrettyPrinter().writeValue(file, records);
+        // 외부 파일에 쓰기
+        objectMapper.writerWithDefaultPrettyPrinter().writeValue(externalFile, records);
     }
 } 
