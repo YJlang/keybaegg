@@ -3,7 +3,7 @@ import axios from 'axios';
 import { getToken, removeToken } from '../auth/token';
 
 const instance = axios.create({
-    baseURL: 'http://localhost:8080', // 백엔드 URL에 맞게 수정
+    baseURL: 'http://35.188.59.44:8080', // GCP VM 백엔드 URL
     headers: { 'Content-Type': 'application/json' },
 });
 
