@@ -113,9 +113,10 @@ const WarriorDetailPage: React.FC = () => {
     }
 
     // 프로필 이미지 URL 생성
+    const API_BASE_URL = process.env.REACT_APP_API_BASE_URL || 'http://35.202.228.224:3000';
     const profileImageUrl = warrior.profileImage.startsWith('http') 
         ? warrior.profileImage 
-        : `http://localhost:8080${warrior.profileImage}`;
+        : `${API_BASE_URL}${warrior.profileImage}`;
 
     return (
         <div className="max-w-4xl mx-auto p-6">

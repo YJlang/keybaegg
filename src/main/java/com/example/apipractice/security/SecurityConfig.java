@@ -39,6 +39,7 @@ public class SecurityConfig {
             "https://localhost:3000",
             "http://localhost:5173",
             "https://localhost:5173",
+            "http://35.202.228.224:3000",  // VM IP 추가
             "https://*.vercel.app",
             "https://*.netlify.app",
             "https://*.github.io"
@@ -64,14 +65,15 @@ public class SecurityConfig {
                                 "/api/keyboard-warriors/ranking", "/api/match-records/warrior/**", 
                                 "/api/achievements/warrior/{id}", "/api/upload/**", "/api/test/**").permitAll()
                         .requestMatchers("/images/**", "/static/**", "/css/**", "/js/**", "/favicon.ico").permitAll() // 정적 리소스 허용
-                                                  .requestMatchers("/api/match-records").authenticated() // 전적 관리 API (CRUD)
-                          .requestMatchers("/api/match-records/{id}").authenticated() // 전적 관리 API (개별 CRUD)
-                          .requestMatchers("/api/achievements/warrior/*/toggle/*").authenticated() // 업적 관리 API
-                          .requestMatchers("/api/achievements/warrior/*/unlock-all").authenticated() // 업적 관리 API
-                          .requestMatchers("/api/achievements/warrior/*/lock-all").authenticated() // 업적 관리 API
-                          .requestMatchers("/api/achievements/warrior/*/unlock/*").authenticated() // 업적 관리 API
-                          .requestMatchers("/api/achievements/warrior/*/lock/*").authenticated() // 업적 관리 API
-                          .anyRequest().authenticated()
+                        .requestMatchers("/api/match-records").authenticated() // 전적 관리 API (CRUD)
+                        .requestMatchers("/api/match-records/{id}").authenticated() // 전적 관리 API (개별 CRUD)
+                        .requestMatchers("/api/match-records/migrate-opponent-names").authenticated() // 전적 마이그레이션 API
+                        .requestMatchers("/api/achievements/warrior/*/toggle/*").authenticated() // 업적 관리 API
+                        .requestMatchers("/api/achievements/warrior/*/unlock-all").authenticated() // 업적 관리 API
+                        .requestMatchers("/api/achievements/warrior/*/lock-all").authenticated() // 업적 관리 API
+                        .requestMatchers("/api/achievements/warrior/*/unlock/*").authenticated() // 업적 관리 API
+                        .requestMatchers("/api/achievements/warrior/*/lock/*").authenticated() // 업적 관리 API
+                        .anyRequest().authenticated()
                 )
                 .addFilterBefore(new JwtAuthenticationFilter(jwtTokenProvider), UsernamePasswordAuthenticationFilter.class)
                 .build();

@@ -10,6 +10,7 @@ import {
     KeyboardWarrior,
     fetchWarriors
 } from '../api/keyboardWarriorApi';
+import axios from '../api/axios';
 import { isAuthenticated } from '../auth/token';
 
 const GAME_TYPES = ['1v1', '2v2', 'Tournament', 'League'];
@@ -46,11 +47,24 @@ const MatchRecordManagePage: React.FC = () => {
         try {
             setLoading(true);
             setError(null);
+            
             const [recordsData, warriorsData] = await Promise.all([
                 fetchAllMatchRecords(),
                 fetchWarriors()
             ]);
-            setMatchRecords(recordsData);
+            
+            // 중복 전적 제거: 같은 경기는 한 번만 표시
+            const uniqueRecords = recordsData.filter((record, index, self) => {
+                // 같은 경기인지 확인 (배틀러와 상대방이 서로 바뀐 경우)
+                const isDuplicate = self.findIndex(r => 
+                    (r.warriorId === record.warriorId && r.opponentId === record.opponentId) ||
+                    (r.warriorId === record.opponentId && r.opponentId === record.warriorId)
+                );
+                // 첫 번째로 발견된 전적만 유지
+                return isDuplicate === index;
+            });
+            
+            setMatchRecords(uniqueRecords);
             setWarriors(warriorsData);
         } catch (err) {
             setError('데이터를 불러오는 중 오류가 발생했습니다.');
@@ -149,6 +163,22 @@ const MatchRecordManagePage: React.FC = () => {
         }
     };
 
+    const handleMigrateOpponentNames = async () => {
+        if (!window.confirm('기존 전적 데이터의 상대방 이름을 업데이트하시겠습니까?')) {
+            return;
+        }
+
+        try {
+            setError(null);
+            await axios.post('/api/match-records/migrate-opponent-names');
+            alert('상대방 이름 마이그레이션이 완료되었습니다.');
+            loadData(); // 데이터 새로고침
+        } catch (err) {
+            setError('마이그레이션 중 오류가 발생했습니다.');
+            console.error('Error migrating opponent names:', err);
+        }
+    };
+
     const getWarriorName = (id: number) => {
         const warrior = warriors.find(w => w.id === id);
         return warrior ? warrior.nickname : `ID: ${id}`;
@@ -192,7 +222,15 @@ const MatchRecordManagePage: React.FC = () => {
 
     return (
         <div className="max-w-7xl mx-auto p-6 space-y-8">
-            <h1 className="text-4xl font-bold text-center text-white mb-8">전적 관리</h1>
+            <div className="flex justify-between items-center mb-8">
+                <h1 className="text-4xl font-bold text-white">전적 관리</h1>
+                <button
+                    onClick={handleMigrateOpponentNames}
+                    className="bg-purple-600 text-white px-4 py-2 rounded-lg hover:bg-purple-700 transition-colors text-sm font-semibold"
+                >
+                    🔄 상대방 이름 마이그레이션
+                </button>
+            </div>
 
             {/* 등록/수정 폼 */}
             <div className="bg-gray-800 rounded-lg shadow-lg p-6 border border-gray-700">

@@ -9,14 +9,16 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.UUID;
 
 @RestController
 @RequestMapping("/api/upload")
 public class FileUploadController {
 
-    // 절대 경로로 변경
-    private static final String UPLOAD_DIR = System.getProperty("user.dir") + "/src/main/resources/static/images/profiles/";
+    // JAR 실행 환경에서도 정상 작동하는 경로로 변경
+    private static final String UPLOAD_DIR = "./data/images/profiles/";
 
     @PostMapping("/profile-image")
     public ResponseEntity<ImageUploadResponse> uploadProfileImage(@RequestParam("image") MultipartFile file) {
@@ -74,10 +76,14 @@ public class FileUploadController {
             // 응답 URL 생성
             String imageUrl = "/images/profiles/" + uniqueFilename;
 
-            System.out.println("이미지 업로드 성공: " + imageUrl);
+            System.out.println("=== 이미지 업로드 성공 ===");
+            System.out.println("이미지 URL: " + imageUrl);
             System.out.println("저장 경로: " + filePath.toAbsolutePath());
             System.out.println("파일 크기: " + Files.size(filePath) + " bytes");
             System.out.println("파일 존재 여부: " + Files.exists(filePath));
+            System.out.println("업로드 디렉토리 존재: " + new File(UPLOAD_DIR).exists());
+            System.out.println("업로드 디렉토리 경로: " + new File(UPLOAD_DIR).getAbsolutePath());
+            System.out.println("==========================");
 
             return ResponseEntity.ok(new ImageUploadResponse("이미지 업로드 성공", imageUrl));
 
@@ -91,6 +97,31 @@ public class FileUploadController {
             e.printStackTrace();
             return ResponseEntity.internalServerError()
                 .body(new ImageUploadResponse("예상치 못한 오류가 발생했습니다: " + e.getMessage(), null));
+        }
+    }
+
+    // 이미지 파일 존재 여부 확인 엔드포인트 (디버깅용)
+    @GetMapping("/check-image/{filename}")
+    public ResponseEntity<Map<String, Object>> checkImage(@PathVariable String filename) {
+        Map<String, Object> response = new HashMap<>();
+        
+        try {
+            Path filePath = Paths.get(UPLOAD_DIR + filename);
+            boolean exists = Files.exists(filePath);
+            
+            response.put("filename", filename);
+            response.put("exists", exists);
+            response.put("absolutePath", filePath.toAbsolutePath().toString());
+            
+            if (exists) {
+                response.put("fileSize", Files.size(filePath));
+                response.put("lastModified", Files.getLastModifiedTime(filePath));
+            }
+            
+            return ResponseEntity.ok(response);
+        } catch (Exception e) {
+            response.put("error", e.getMessage());
+            return ResponseEntity.internalServerError().body(response);
         }
     }
 

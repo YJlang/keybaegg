@@ -7,7 +7,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/api/match-records")
@@ -66,5 +68,14 @@ public class MatchRecordController {
             return ResponseEntity.notFound().build();
         }
         return ResponseEntity.ok(record);
+    }
+
+    // 데이터 마이그레이션 (관리자용)
+    @PostMapping("/migrate-opponent-names")
+    public ResponseEntity<Map<String, String>> migrateOpponentNames() throws IOException {
+        service.migrateOpponentNames();
+        Map<String, String> response = new HashMap<>();
+        response.put("message", "상대방 이름 마이그레이션이 완료되었습니다.");
+        return ResponseEntity.ok(response);
     }
 } 

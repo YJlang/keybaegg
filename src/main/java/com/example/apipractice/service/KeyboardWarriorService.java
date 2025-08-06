@@ -55,8 +55,26 @@ public class KeyboardWarriorService {
     public List<KeyboardWarrior> getRankedWarriors() throws IOException {
         List<KeyboardWarrior> warriors = repository.findAll();
         
-        // 포인트 높은 순으로 정렬
-        warriors.sort(Comparator.comparing(KeyboardWarrior::getPoints).reversed());
+        // 티어별 정렬 (SS > S > A > B > C > D) 후 포인트 순으로 정렬
+        warriors.sort(Comparator
+            .comparing(KeyboardWarrior::getTier, (tier1, tier2) -> {
+                // 티어 우선순위 정의
+                String[] tierOrder = {"SS", "S", "A", "B", "C", "D"};
+                int index1 = -1, index2 = -1;
+                
+                for (int i = 0; i < tierOrder.length; i++) {
+                    if (tierOrder[i].equals(tier1)) index1 = i;
+                    if (tierOrder[i].equals(tier2)) index2 = i;
+                }
+                
+                // 알 수 없는 티어는 맨 뒤로
+                if (index1 == -1) index1 = tierOrder.length;
+                if (index2 == -1) index2 = tierOrder.length;
+                
+                return Integer.compare(index1, index2); // 낮은 인덱스가 높은 티어
+            })
+            .thenComparing(KeyboardWarrior::getPoints, Comparator.reverseOrder()) // 같은 티어 내에서는 포인트 높은 순
+        );
         
         return warriors;
     }

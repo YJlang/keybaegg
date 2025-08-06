@@ -3,7 +3,7 @@ import axios from 'axios';
 import { getToken, removeToken } from '../auth/token';
 
 const instance = axios.create({
-    baseURL: 'http://35.188.59.44:8080', // GCP VM 백엔드 URL
+    baseURL: 'http://35.202.228.224:3000', // Nginx 프록시를 통해 요청 (CORS 해결)
     headers: { 'Content-Type': 'application/json' },
 });
 
