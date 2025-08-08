@@ -24,7 +24,7 @@ const WarriorCard: React.FC<WarriorCardProps> = ({ warrior }) => {
     const tierColor = getTierColor(warrior.tier);
     
     // 프로필 이미지 URL 생성 (환경변수 사용)
-    const API_BASE_URL = process.env.REACT_APP_API_BASE_URL || 'http://35.202.228.224:3000';
+    const API_BASE_URL = process.env.REACT_APP_API_BASE_URL || 'http://35.202.228.224';
     const profileImageUrl = warrior.profileImage.startsWith('http') 
         ? warrior.profileImage 
         : `${API_BASE_URL}${warrior.profileImage}`;
@@ -44,7 +44,6 @@ const WarriorCard: React.FC<WarriorCardProps> = ({ warrior }) => {
                         onError={(e) => {
                             // 이미지 로드 실패 시 기본 이미지로 대체
                             const target = e.target as HTMLImageElement;
-                            console.error(`이미지 로드 실패: ${profileImageUrl}`, e);
                             target.src = 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjQiIGhlaWdodD0iNjQiIHZpZXdCb3g9IjAgMCA2NCA2NCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHJlY3Qgd2lkdGg9IjY0IiBoZWlnaHQ9IjY0IiBmaWxsPSIjMzc0MTUxIi8+CjxjaXJjbGUgY3g9IjMyIiBjeT0iMjQiIHI9IjEyIiBmaWxsPSIjOUNBM0FGIi8+CjxwYXRoIGQ9Ik0xNiA0OEwzMiAzNkw0OCA0OCIgc3Ryb2tlPSIjOUNBM0FGIiBzdHJva2Utd2lkdGg9IjQiIGZpbGw9Im5vbmUiLz4KPC9zdmc+';
                         }}
                     />

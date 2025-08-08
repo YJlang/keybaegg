@@ -113,7 +113,7 @@ const WarriorDetailPage: React.FC = () => {
     }
 
     // 프로필 이미지 URL 생성
-    const API_BASE_URL = process.env.REACT_APP_API_BASE_URL || 'http://35.202.228.224:3000';
+    const API_BASE_URL = process.env.REACT_APP_API_BASE_URL || 'http://35.202.228.224';
     const profileImageUrl = warrior.profileImage.startsWith('http') 
         ? warrior.profileImage 
         : `${API_BASE_URL}${warrior.profileImage}`;

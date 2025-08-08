@@ -39,7 +39,17 @@ public class SecurityConfig {
             "https://localhost:3000",
             "http://localhost:5173",
             "https://localhost:5173",
-            "http://35.202.228.224:3000",  // VM IP 추가
+            "http://35.202.228.224",       // 포트 80
+            "http://35.202.228.224:80",    // 명시적 포트 80
+            "https://35.202.228.224",      // HTTPS 포트 80
+            "http://www.taja.me.kr",       // www 도메인
+            "https://www.taja.me.kr",      // HTTPS www 도메인
+            "http://taja.me.kr",           // 루트 도메인
+            "https://taja.me.kr",          // HTTPS 루트 도메인
+            "http://keybae.store",         // 가비아 루트 도메인
+            "https://keybae.store",        // HTTPS 가비아 루트 도메인
+            "http://www.keybae.store",     // 가비아 www 도메인
+            "https://www.keybae.store",    // HTTPS 가비아 www 도메인
             "https://*.vercel.app",
             "https://*.netlify.app",
             "https://*.github.io"

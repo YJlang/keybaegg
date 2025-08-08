@@ -11,13 +11,13 @@ public class WebConfig implements WebMvcConfigurer {
     @Override
     public void addCorsMappings(CorsRegistry registry) {
         registry.addMapping("/api/**")
-                .allowedOrigins("http://35.202.228.224:3000", "http://localhost:3000")
+                .allowedOrigins("http://35.202.228.224", "http://35.202.228.224:80", "http://www.taja.me.kr", "http://taja.me.kr", "http://keybae.store", "http://www.keybae.store", "http://localhost:3000")
                 .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
                 .allowedHeaders("*")
                 .allowCredentials(true)
                 .maxAge(3600);
         
-        System.out.println("CORS 설정 등록됨: /api/** -> http://35.202.228.224:3000");
+        System.out.println("CORS 설정 등록됨: /api/** -> http://www.taja.me.kr, http://taja.me.kr, http://keybae.store");
     }
 
     @Override

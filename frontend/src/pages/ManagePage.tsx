@@ -305,7 +305,7 @@ const ManagePage: React.FC = () => {
                     <div className="mt-4">
                         <label className="block text-sm font-medium text-gray-300 mb-2">미리보기</label>
                         <img
-                            src={imagePreview || `${process.env.REACT_APP_API_BASE_URL || 'http://35.202.228.224:3000'}${currentProfileImage}`}
+                            src={imagePreview || `${process.env.REACT_APP_API_BASE_URL || 'http://35.202.228.224'}${currentProfileImage}`}
                             alt="프로필 미리보기"
                             className="w-20 h-20 rounded-full object-cover border-2 border-gray-600"
                             onError={(e) => {
@@ -375,7 +375,7 @@ const ManagePage: React.FC = () => {
                                             <tr className="hover:bg-gray-750">
                                                 <td className="p-4">
                                                     <img
-                                                        src={`${process.env.REACT_APP_API_BASE_URL || 'http://35.202.228.224:3000'}${warrior.profileImage}`}
+                                                        src={`${process.env.REACT_APP_API_BASE_URL || 'http://35.202.228.224'}${warrior.profileImage}`}
                                                         alt={`${warrior.nickname} 프로필`}
                                                         className="w-12 h-12 rounded-full object-cover border border-gray-600"
                                                         onError={(e) => {
